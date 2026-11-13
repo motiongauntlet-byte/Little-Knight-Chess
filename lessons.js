@@ -26,7 +26,7 @@
 (function(){
 const START='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 window.LKC_LESSONS={
-version:'2026.11.10',
+version:'2026.11.12',
 sections:[
  {id:'basic',name:'Basic'},
  {id:'intermediate',name:'Intermediate'},
@@ -244,6 +244,39 @@ lessons:
  {t:'try',fen:START,say:'Your turn. Play the queen pawn start.',sol:['d2d4','d7d5','g1f3','g8f6','c1f4'],hint:'Queen pawn first, then a knight, then the bishop next to your queen.',good:'Nice! Your bishop is out in front of your pawns.'},
  {t:'try',fen:'rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R w KQkq - 0 4',say:'Open a door for your other bishop.',sol:['e2e3'],hint:'Move the pawn in front of your king one square.',good:'Now that bishop can come out too!'}
 ]},
+{id:'op-spanish',section:'opening',icon:'wB',title:'The Spanish Game',blurb:'Bother the guard knight',steps:[
+ {t:'show',fen:START,say:'The Spanish Game is one of the oldest openings. It starts just like the Italian Game.',play:['e2e4','e7e5','g1f3','b8c6']},
+ {t:'show',say:'Now the bishop goes to a different square. It bothers the knight that guards the middle pawn.',play:['f1b5'],arrows:[['b5','c6'],['c6','e5']]},
+ {t:'show',say:'Black often asks the bishop to leave. The bishop steps back, but it still looks down the same line.',play:['a7a6','b5a4'],arrows:[['a4','e8']]},
+ {t:'try',fen:START,say:'Now you play the Spanish Game. Start with the pawn in front of your king.',sol:['e2e4','e7e5','g1f3','b8c6','f1b5'],hint:'King pawn first, then the knight. Then the bishop goes right next to the black knight.',good:'You played the Spanish Game!'},
+ {t:'try',fen:'r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4',say:'Black brought out another knight. Get your king safe!',sol:['e1g1'],hint:'Move your king two squares toward the rook.',good:'Castled! Now your rook can join the game.'}
+]},
+{id:'op-sicilian',section:'opening',icon:'bP',title:'The Sicilian Defense',blurb:'A fighting answer for Black',steps:[
+ {t:'show',fen:START,say:'When you are Black and White pushes the king pawn, you can answer with a side pawn. This is the Sicilian Defense.',play:['e2e4','c7c5'],arrows:[['c5','d4']]},
+ {t:'show',say:'If White pushes a middle pawn, Black trades the side pawn for it. Then Black has more pawns in the middle.',play:['g1f3','d7d6','d2d4','c5d4','f3d4']},
+ {t:'try',fen:'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',say:'You are Black. Play the Sicilian Defense!',sol:['c7c5'],hint:'Push the pawn in front of the bishop that sits next to your queen. Move it two squares.',good:'That is the Sicilian Defense!'},
+ {t:'try',fen:'rnbqkbnr/pp2pppp/3p4/2p5/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq - 0 3',say:'White pushed a middle pawn. Make the trade!',sol:['c5d4'],hint:'Your side pawn can capture the white middle pawn.',good:'Side pawn for a middle pawn. Nice trade!'},
+ {t:'try',fen:'rnbqkbnr/pp2pppp/3p4/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq - 0 4',say:'Now wake up a knight that attacks the white pawn in the middle.',sol:['g8f6'],hint:'Your knight on the king side can jump to a square that touches that pawn.',good:'Attack and wake up at the same time. Great!'}
+]},
+{id:'op-knightattack',section:'opening',icon:'wN',title:'Stop the Knight Attack',blurb:'Two attackers, one guard',steps:[
+ {t:'show',fen:'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4',say:'Here White has a sneaky idea. The knight jumps forward to attack the pawn next to the black king.',play:['f3g5'],marks:{r:['f7']},arrows:[['g5','f7'],['c4','f7']]},
+ {t:'show',say:'Two white pieces attack that pawn. Only the black king guards it. Black must act fast!',marks:{r:['f7']},arrows:[['g5','f7'],['c4','f7']]},
+ {t:'show',say:'The best answer is to push a middle pawn. It blocks the bishop and attacks it too.',play:['d7d5'],arrows:[['d5','c4']]},
+ {t:'try',fen:'r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq - 5 4',say:'You are Black. Stop the attack!',sol:['d7d5'],hint:'Push the pawn in front of your queen two squares. It blocks the bishop.',good:'Blocked! Your king is safe.'}
+]},
+{id:'op-forktrick',section:'opening',icon:'bN',title:'The Fork Trick',blurb:'Give a knight, get it back',steps:[
+ {t:'show',fen:'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4',say:'Watch this trick for Black. The knight takes the white pawn in the middle.',play:['f6e4','c3e4']},
+ {t:'show',say:'It looks like Black lost a knight. But now a pawn forks the bishop and the knight!',play:['d7d5'],arrows:[['d5','c4'],['d5','e4']]},
+ {t:'show',say:'White can only save one. Black gets the piece back and has a strong pawn in the middle.',play:['c4d3','d5e4','d3e4']},
+ {t:'try',fen:'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4',say:'You are Black. Do the fork trick!',sol:['f6e4','c3e4','d7d5'],hint:'First your knight takes the pawn in the middle. Then push a pawn to fork.',good:'Fork trick! You will win the piece back.'}
+]},
+{id:'op-longcastle',section:'opening',icon:'wK',title:'Castle the Long Way',blurb:'Hide your king on the other side',steps:[
+ {t:'show',fen:'r3kbnr/pppqpppp/2n5/3p1b2/3P1B2/2N5/PPPQPPPP/R3KBNR w KQkq - 6 5',say:'You can castle on the queen side too. First, move every piece out from between the king and the rook.',marks:{g:['b1','c1','d1']}},
+ {t:'show',say:'Now the king moves two squares toward the rook, and the rook jumps over him.',play:['e1c1']},
+ {t:'show',fen:'r2qk2r/ppp1bppp/2n5/3p4/2bP4/2N1BN2/PPPQ1PPP/R3K2R w KQkq - 0 1',say:'Castling rule. Your king cannot castle out of check, or pass over a square that is attacked.',marks:{r:['f1']},arrows:[['c4','f1']]},
+ {t:'try',fen:'r3kbnr/pppqpppp/2n5/3p1b2/3P1B2/2N5/PPPQPPPP/R3KBNR w KQkq - 6 5',say:'Your turn. Castle the long way!',sol:['e1c1'],hint:'Move your king two squares toward the rook on the queen side.',good:'Long castle! Your rook is already in the middle.'},
+ {t:'try',fen:'r2qk2r/ppp1bppp/2n5/3p4/2bP4/2N1BN2/PPPQ1PPP/R3K2R w KQkq - 0 1',say:'The bishop blocks castling on the short side. Castle the other way!',sol:['e1c1'],hint:'Move your king two squares toward the rook on the queen side.',good:'Safe and sound on the other side!'}
+]},
 {id:'op-challenge',section:'opening',icon:'wK',title:'Opening Challenge',blurb:'Do all three jobs in a game',steps:[
  {t:'show',fen:START,say:'Time for a real game! Do all three jobs. Grab the middle, wake up your pieces, then castle.'},
  {t:'game',fen:START,level:2,goal:'castle',say:'You are White. Castle before you lose a piece!',hint:'Push a middle pawn, bring out a knight and a bishop, then castle.',win:'You castled! What a great opening.',lose:'Oops, a piece got taken. Keep your pieces guarded and try again.'},
@@ -275,6 +308,31 @@ lessons:
  {t:'show',say:'The queen joins the bishop. Now two pieces aim at the same square.',play:['d1h5'],marks:{r:['h7']},arrows:[['d3','h7'],['h5','h7']]},
  {t:'try',fen:'r1bq1rk1/ppp2ppp/8/7Q/8/3B4/PPP2PPP/R4RK1 w - - 0 2',say:'Checkmate in one move! Use the queen and bishop team.',goal:{mate:1},hint:'Take the pawn next to the king. The bishop guards your queen.',good:'Checkmate! Teamwork wins.'},
  {t:'try',fen:'r1b2rk1/pppp1ppp/8/6NQ/8/8/PPP2PPP/R4RK1 w - - 0 1',say:'The knight and queen aim at the same square. Find checkmate!',goal:{mate:1},hint:'Take the pawn next to the king. The knight guards your queen.',good:'Checkmate! The knight and queen worked together.'}
+]},
+{id:'mg-count',section:'middle',icon:'wR',title:'Count Attackers and Guards',blurb:'More attackers win the fight',steps:[
+ {t:'show',fen:'3r2k1/5ppp/8/3p4/8/8/5PPP/3R2K1 w - - 0 1',say:'Count before you capture. Your rook attacks this pawn once. Their rook guards it once.',marks:{r:['d5']},arrows:[['d1','d5'],['d8','d5']]},
+ {t:'show',say:'If you take now, their rook takes back. You lose a rook for a pawn!',play:['d1d5','d8d5']},
+ {t:'show',fen:'3r2k1/5ppp/8/3p4/8/4N3/5PPP/3R2K1 w - - 0 1',say:'Add a second attacker. Now you have two attackers and they have one guard. Two beats one!',marks:{r:['d5']},arrows:[['d1','d5'],['e3','d5']]},
+ {t:'try',fen:'3r2k1/5ppp/8/3p4/8/8/2N2PPP/3R2K1 w - - 0 1',say:'Bring a second attacker to the pawn.',sol:['c2e3|c2b4'],hint:'Your knight can jump to a square that touches the pawn.',good:'Two attackers against one guard!'},
+ {t:'try',fen:'3r2k1/5ppp/8/3p4/8/4N3/5PPP/3R2K1 w - - 0 1',say:'Now you have more attackers. Win the pawn!',sol:['e3d5|d1d5'],hint:'Take with the knight first. If their rook takes back, your rook takes it.',good:'You won the pawn! More attackers won the fight.'}
+]},
+{id:'mg-queenfork',section:'middle',icon:'wQ',title:'The Queen Double Attack',blurb:'Check and attack at once',steps:[
+ {t:'show',fen:'4k3/8/8/7r/8/8/1Q6/4K3 w - - 0 1',say:'The queen is great at double attacks. She can check the king and attack another piece at the same time.'},
+ {t:'show',say:'The queen checks the king and also looks at the rook. After the king moves, the rook is gone!',play:['b2e2','e8d7','e2h5'],arrows:[['e2','e8'],['e2','h5']]},
+ {t:'try',fen:'4k3/8/8/7r/8/8/1Q6/4K3 w - - 0 1',say:'Your turn. Check the king and attack the rook with one queen move.',sol:['b2e2|b2b5','e8d8','e2h5|b5h5'],hint:'Put your queen on the same line as the king. Pick a square where she also sees the rook.',good:'Double attack! The rook is yours.'},
+ {t:'try',fen:'6k1/6pp/8/n7/8/8/5PPP/3Q2K1 w - - 0 1',say:'Find a queen check that also attacks the knight!',sol:['d1d5','g8f8','d5a5'],hint:'Put your queen in the middle of the board. She can see the king and the knight from there.',good:'Check and capture. Super queen!'}
+]},
+{id:'mg-trap',section:'middle',icon:'bB',title:'Trap a Piece',blurb:'No squares to run to',steps:[
+ {t:'show',fen:'6k1/5ppp/8/8/8/8/bPP2PPP/2K5 w - - 0 1',say:'A piece is trapped when every square it could run to is unsafe. This black bishop took a pawn in the corner.',marks:{r:['a2']}},
+ {t:'show',say:'One pawn step, and the bishop has nowhere to go. Your king guards one square and a pawn guards the other.',play:['b2b3'],marks:{r:['a2'],g:['b1','b3']}},
+ {t:'try',fen:'6k1/5ppp/8/8/8/8/bPP2PPP/2K5 w - - 0 1',say:'Your turn. Trap the bishop with a pawn move!',sol:['b2b3'],hint:'Push the pawn next to the bishop one square. It blocks the way out.',good:'Trapped! It cannot escape.'},
+ {t:'try',fen:'6k1/5pp1/7p/8/8/1P6/b1P2PPP/2K5 w - - 0 1',say:'The bishop is still stuck. Go and get it!',sol:['c1b2'],hint:'Walk your king next to the bishop.',good:'Your king will catch the bishop!'}
+]},
+{id:'mg-threat',section:'middle',icon:'bQ',title:'Spot the Threat',blurb:'What does your opponent want?',steps:[
+ {t:'show',fen:'6k1/5ppp/3b4/8/7q/8/3N1PPP/7K w - - 0 1',say:'Before you move, ask one question. What does my opponent want to do next?'},
+ {t:'show',say:'Here the black queen and bishop both aim at the pawn next to your king. If the queen takes it, that is checkmate!',marks:{r:['h2']},arrows:[['h4','h2'],['d6','h2']]},
+ {t:'try',say:'Stop the checkmate threat!',goal:'safe',hint:'Guard that pawn with a piece, or block the bishop with a pawn.',good:'Threat stopped! You looked before you moved.'},
+ {t:'try',fen:'6k1/1b3ppp/8/6q1/8/8/5PPP/6K1 w - - 0 1',say:'Black wants to checkmate you again. Find the danger and stop it!',goal:'safe',hint:'The queen and the bishop both aim at the pawn in front of your king. Block one of them with a pawn.',good:'Safe! Always ask what your opponent wants.'}
 ]},
 {id:'mg-challenge',section:'middle',icon:'wR',title:'Middle Game Challenge',blurb:'Finish with an extra queen',steps:[
  {t:'show',fen:'r5k1/pp3ppp/8/8/8/8/PP3PPP/R2Q2K1 w - - 0 1',say:'Middle Game Challenge! You have an extra queen. Use checks, captures, and threats to finish the game.'},
@@ -310,6 +368,30 @@ lessons:
  {t:'try',fen:'3k4/8/3K4/8/8/8/8/R7 w - - 0 1',say:'Kings face to face. Finish it!',goal:{mate:1},hint:'Slide the rook to the top row.',good:'Checkmate!'},
  {t:'try',fen:'k7/8/1K6/8/8/8/8/7R w - - 0 1',say:'The king is in the corner. Find checkmate.',goal:{mate:1},hint:'Check him on the top row.',good:'Checkmate! The corner is a trap.'},
  {t:'game',fen:'3k4/8/8/2K5/8/8/8/7R w - - 0 1',level:9,goal:'mate',say:'Now do it all. Use your king and rook to push him to the edge, then checkmate.',hint:'Make his box smaller with your rook. Bring your king close.',win:'Checkmate! That is a big endgame skill.',lose:'That was a tie. Make sure he always has a square to move to.'}
+]},
+{id:'eg-promote',section:'endgame',icon:'wR',title:'Pick the Right New Piece',blurb:'A queen is not always best',steps:[
+ {t:'show',fen:'8/k1P5/2K5/8/8/8/8/8 w - - 0 1',say:'When your pawn reaches the end, you can pick any new piece. Usually a queen is best. But not always!'},
+ {t:'show',say:'Look what happens with a queen. Black is not in check and cannot move. Stalemate, a tie!',play:['c7c8q'],marks:{r:['a8','b8','a6','b6','b7']}},
+ {t:'try',fen:'8/k1P5/2K5/8/8/8/8/8 w - - 0 1',say:'Pick a new piece that does not make stalemate. Try a rook!',sol:['c7c8r'],hint:'Push the pawn, then choose the rook.',good:'A rook! Now the black king still has a move.'},
+ {t:'try',fen:'2R5/8/k1K5/8/8/8/8/8 w - - 0 1',say:'The king had only one move. Now find checkmate!',goal:{mate:1},hint:'Slide your rook along the top row to the corner.',good:'Checkmate! The rook was the right choice.'}
+]},
+{id:'eg-buddies',section:'endgame',icon:'wP',title:'Pawn Buddies',blurb:'Side by side pawns guard each other',steps:[
+ {t:'show',fen:'8/8/4k3/8/3PP3/8/8/7K w - - 0 1',say:'Two pawns side by side are buddies. When one steps forward, the other one guards it.',marks:{g:['d4','e4']}},
+ {t:'show',say:'Watch. One pawn steps up, and its buddy guards it. A king is never allowed to take a guarded piece!',play:['e4e5'],arrows:[['d4','e5']]},
+ {t:'try',fen:'8/5k2/8/3P4/4P3/8/8/7K w - - 0 1',say:'One buddy is out in front alone. Bring the back pawn up next to it.',sol:['e4e5'],hint:'Move the back pawn one square, so the two pawns stand side by side.',good:'Side by side again. Now whichever pawn steps up will be guarded.'},
+ {t:'game',fen:'8/8/4k3/8/3PP3/8/8/7K w - - 0 1',level:9,goal:'promote',say:'March your pawn buddies to the end. Keep them guarding each other!',hint:'Move the back pawn first, so they stay side by side.',win:'New queen! The buddies made it.',lose:'A pawn got caught. Keep them side by side and try again.'}
+]},
+{id:'eg-cutoff',section:'endgame',icon:'wR',title:'Cut Off the King',blurb:'Build a wall with your rook',steps:[
+ {t:'show',fen:'8/8/8/8/2k5/8/4PK2/R7 w - - 0 1',say:'Your rook can build a wall. The enemy king cannot cross the line your rook is on.'},
+ {t:'show',say:'The rook slides over. Now the black king is stuck on one side, and your pawn is free on the other.',play:['a1d1'],marks:{g:['d1','d2','d3','d4','d5','d6','d7','d8']}},
+ {t:'try',fen:'8/8/8/8/2k5/8/4PK2/R7 w - - 0 1',say:'Build the wall between the black king and your pawn.',sol:['a1d1'],hint:'Slide your rook to the line right next to your pawn.',good:'Wall built!'},
+ {t:'game',fen:'8/8/8/8/2k5/8/4PK2/3R4 w - - 0 1',level:9,goal:'promote',say:'Keep the wall up. Walk your king and pawn to the end and make a queen.',hint:'Keep your rook on its line. Let your king walk next to the pawn.',win:'New queen! Your wall held strong.',lose:'The black king got through. Keep the rook wall in place and try again.'}
+]},
+{id:'eg-faraway',section:'endgame',icon:'bP',title:'The Faraway Pawn',blurb:'Pull the king away',steps:[
+ {t:'show',fen:'8/5p2/4k1p1/8/P3K3/6P1/5P2/8 w - - 0 1',say:'Both sides have the same number of pawns. But your pawn on the far side has no enemy pawn to stop it.',marks:{g:['a4']}},
+ {t:'show',say:'Push it! The black king has to run over to stop it. While he is busy, your king and pawns win on the other side.',play:['a4a5','e6d6','a5a6','d6c6','f2f4','f7f6','g3g4','c6b6','f4f5','g6f5','e4f5','b6a6']},
+ {t:'try',fen:'8/5p2/4k1p1/8/P3K3/6P1/5P2/8 w - - 0 1',say:'Start the plan. Push your faraway pawn!',sol:['a4a5'],hint:'Push the pawn that is all alone on the side.',good:'Run, pawn, run!'},
+ {t:'game',fen:'8/5p2/4k1p1/8/P3K3/6P1/5P2/8 w - - 0 1',level:9,goal:'promote',say:'Win it! Push the faraway pawn, and use your king if the black king chases it.',hint:'Push the faraway pawn. When their king goes after it, attack their pawns with your king and pawns.',win:'New queen! That faraway pawn did its job.',lose:'Close one! Push the faraway pawn first, then send your king to eat their pawns.'}
 ]}
 ]
 };

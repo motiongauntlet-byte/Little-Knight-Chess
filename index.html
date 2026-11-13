@@ -848,18 +848,18 @@ function showAnswerArrow(s){const u=answerMove(s);if(u)lessonBoard.setArrows([[u
 function gameGoal(p,mv){const g=L.step.goal,me=L.human,st=p.status(),pr=mv>>14&7;
  if(g==='mate'){if(st==='checkmate')return p.side===me?'lose':'win';return st?'lose':null;}
  if(g==='promote'){if(pr)return p.side===-me?'win':'lose';return st?'lose':null;}
- if(g==='castle'){if(p.side===-me&&(mv>>17&3)===2)return 'win';if((matDiff(p)-L.matStart)*me<=-3)return 'lose';return st?'lose':null;}
+ if(g==='castle'){if(p.side===-me&&(mv>>17&3)===2)return 'win';if(st==='checkmate')return p.side===me?'lose':'win';if(p.side===-me&&(matDiff(p)-L.matStart)*me<=-3)return 'lose';return st?'lose':null;}
  if(g==='hunt'){if(p.count(1,-me)===0)return 'win';if(pr)return 'lose';return st?'lose':null;}
  return null;}
 function applyGame(u){const p=L.pos,m=p.find(u),cap=isCapture(p,m);p.make(m);L.moves.push(u);lessonBoard.setArrows([]);lessonSync(p,true,{last:uciIdx(u)});playedSound(p,cap);return gameGoal(p,m);}
 function gameResult(r){const s=L.step;L.done=true;lessonBoard.handler=null;
- if(r==='win'){sfx.win();confetti();setBubble('You did it!',s.win,'ok');say(s.win);setButtons({next:true,alt:null,nextText:L.i===L.lesson.steps.length-1?'Finish':'Next'});}
+ if(r==='win'){const w=(s.goal!=='mate'&&L.pos.status()==='checkmate')?'Checkmate! You won the whole game!':s.win;sfx.win();confetti();setBubble('You did it!',w,'ok');say(w);setButtons({next:true,alt:null,nextText:L.i===L.lesson.steps.length-1?'Finish':'Next'});}
  else{sfx.bad();L.mistakes++;setBubble('So close',s.lose,'oops');say(s.lose);setButtons({next:true,nextText:'Skip',alt:'Try Again'});}}
 async function gameStepMove(u){const r=applyGame(u);if(r){gameResult(r);return;}L.busy=true;const tok=L.tok;const[a]=await Promise.all([AI.ask({fen:L.startFen,moves:L.moves.slice(),level:L.step.level}),wait(550)]);if(tok!==L.tok)return;L.busy=false;if(!a)return;const r2=applyGame(a);if(r2){gameResult(r2);return;}}
 async function lessonHint(){const s=L.step;
  if(s.t==='show'){L.tok++;const tok=L.tok;runShow(s);return tok;}
  if(s.t==='game'){if(L.done){L.pos=new E.Pos(L.startFen);L.moves=[];L.done=false;lessonSync(L.pos,false);setBubble('Mini game',s.say);say(s.say);setButtons({next:false,alt:'Hint'});lessonBoard.handler=LH;return;}
-  if(L.busy)return;L.busy=true;const tok=L.tok;setBubble('Hint',s.hint);say(s.hint);const r=await AI.ask({fen:L.startFen,moves:L.moves.slice(),hint:true,ms:700,depth:12});if(tok!==L.tok)return;L.busy=false;if(r)lessonBoard.setArrows([[r.slice(0,2),r.slice(2,4),'#17A673']]);return;}
+  if(L.busy)return;L.busy=true;const tok=L.tok;setBubble('Hint',s.hint);say(s.hint);const cm=s.goal==='castle'?L.pos.legal().find(m=>(m>>17&3)===2):0;const r=cm?L.pos.uci(cm):await AI.ask({fen:L.startFen,moves:L.moves.slice(),hint:true,ms:700,depth:12});if(tok!==L.tok)return;L.busy=false;if(r)lessonBoard.setArrows([[r.slice(0,2),r.slice(2,4),'#17A673']]);return;}
  if(L.done)return;L.hints++;if(L.hints===1&&L.wrong===0){setBubble('Hint',s.hint);say(s.hint);}else{showAnswerArrow(s);const t='Follow the arrow.';setBubble('Hint',t);say(t);}
 }
 function lessonNext(){if(L.i<L.lesson.steps.length-1){enterStep(L.i+1);return;}finishLesson();}
